@@ -1,8 +1,6 @@
 from __future__ import unicode_literals
 
 import gensim
-import time
-
 from hazm import *
 
 
@@ -15,7 +13,6 @@ def matrix_builder(doc_name):
     sentences = sent_tokenize(content)
 
     tagger = POSTagger(model='resources/postagger.model')
-    chars = open('chars', 'r', encoding='utf-8').read().split('\n')
     stop_words = open('stopwords-fa.txt', 'r', encoding='utf-8').read().split('\n')
 
     words = []
@@ -45,22 +42,34 @@ def matrix_builder(doc_name):
     return words
 
 
-if __name__ == '__main__':
+def lda_learner(doc_num):
     docs_words = []
-    start_time = time.time()
 
-    for i in range(1, 6):
+    for i in range(1, doc_num + 1):
         docs_words.append(matrix_builder('news' + str(i)))
 
-    # print('run time: %s s' % (time.time() - start_time))
     dictionary = gensim.corpora.Dictionary(docs_words)
+    dictionary.save('lda_dictionary.dict')
 
     corpus = [dictionary.doc2bow(text) for text in docs_words]
-    # print('run time: %s s' % (time.time() - start_time))
 
     ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=100, id2word=dictionary, passes=50)
+    ldamodel.save('lda.model')
 
-    # print('run time: %s s' % (time.time() - start_time))
 
-    print(ldamodel.print_topics(num_topics=100, num_words=5))
-    print('run time: %s s' % (time.time() - start_time))
+def news_topic_creator(doc_name):
+    ldamodel = gensim.models.LdaModel.load('lda.model')
+    dictionary = gensim.corpora.Dictionary.load('lda_dictionary.dict')
+    corpus = dictionary.doc2bow(matrix_builder(doc_name))
+
+    topics = [0 for x in range(100)]
+    lda_topics = ldamodel.get_document_topics(corpus)
+    for item in lda_topics:
+        topics[item[0]] = item[1]
+
+    return topics
+
+
+if __name__ == '__main__':
+
+    lda_learner(5)
