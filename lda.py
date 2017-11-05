@@ -71,5 +71,4 @@ def news_topic_creator(doc_name):
 
 
 if __name__ == '__main__':
-
     lda_learner(5)

@@ -1,7 +1,8 @@
 import lda
 
-def user_news_creator(file_name):
-    file = open(file_name + '.txt', 'r')
+
+def user_news_creator():
+    file = open('user_news_matrix.txt', 'r')
     user_news_file = file.read().split('\n')
     news = int(user_news_file[0])
 
@@ -24,30 +25,19 @@ def news_topic_creator():
     return news_topic
 
 
-# write news_topic to news_topic_matrix
-def news_topic_file_writer(start_index, end_index):
-    file = open('news_topic_matrix.txt', 'w')
-    log = ''
-    for i in range(start_index, end_index):
-        name = 'news' + str(i)
-        news_topic = lda.news_topic_creator(name)
-        " ".join(news_topic)
-        
-
-
-'''
-def add_new_doc(doc_name):
+def add_new_doc_to_news_topic(doc_name):
     # update all news_topic
+    file = open('news_topic_matrix.txt', 'a+')
     news_topic = lda.news_topic_creator('news2')
+    log = ''
+    for item in news_topic:
+        log += str(item) + ' '
+    file.write(log)
+    file.close()
 
-    print(news_topic)
-
-    return
-'''
 
 if __name__ == '__main__':
     # TODO make file
-    user_news_matrix = user_news_creator()
+    # user_news_matrix = user_news_creator()
     news_topic_matrix = news_topic_creator()
-
-    print(1)
+    print(news_topic_matrix)
