@@ -46,3 +46,5 @@ if __name__ == '__main__':
     news_topic_matrix = news_topic_creator()
     for item in news_topic_matrix:
         print(item, ":", news_topic_matrix[item])
+
+    print("hi")
