@@ -58,9 +58,9 @@ if __name__ == '__main__':
     corpus = [dictionary.doc2bow(text) for text in docs_words]
     # print('run time: %s s' % (time.time() - start_time))
 
-    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=5, id2word=dictionary, passes=50)
+    ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=100, id2word=dictionary, passes=50)
 
     # print('run time: %s s' % (time.time() - start_time))
 
-    print(ldamodel.print_topics(num_topics=4, num_words=4))
+    print(ldamodel.print_topics(num_topics=100, num_words=5))
     print('run time: %s s' % (time.time() - start_time))
