@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.4
+Created-By: 1.7.0_55-b13 (Oracle Corporation)
+Main-Class: org.maltparser.Malt
+Implementation-Title: MaltParser
+Implementation-Version: 1.8
+Implementation-Vendor: Johan Hall, Jens Nilsson and Joakim Nivre
+Build-Date: May 5 2014
+Class-Path: lib/log4j.jar lib/libsvm.jar lib/liblinear-1.8.jar  
+

@@ -1,0 +1,127 @@
+CONFIGURATION
+Configuration name:   langModel
+Configuration type:   singlemalt
+Created:              Fri Mar 20 07:58:52 IRST 2015
+
+SYSTEM
+Operating system architecture: amd64
+Operating system name:         Linux
+JRE vendor name:               Oracle Corporation
+JRE version number:            1.7.0_65
+
+MALTPARSER
+Version:                       1.8
+Build date:                    May 5 2014
+
+SETTINGS
+2planar
+  reduceonswitch (-2pr)                 false
+config
+  workingdir (  -w)                     resources
+  name (  -c)                           langModel.mco
+  logging ( -cl)                        info
+  flowchart (  -m)                      learn
+  type (  -t)                           singlemalt
+  logfile (-lfi)                        stdout
+  url (  -u)                            
+covington
+  allow_root ( -cr)                     true
+  allow_shift ( -cs)                    false
+graph
+  max_sentence_length (-gsl)            256
+  head_rules (-ghr)                     
+  root_label (-grl)                     ROOT
+guide
+  decision_settings (-gds)              T.TRANS+A.DEPREL
+  kbest_type ( -kt)                     rank
+  data_split_structure (  -s)           
+  learner (  -l)                        liblinear
+  kbest (  -k)                          -1
+  features (  -F)                       resources/malt-features.xml
+  classitem_separator (-gcs)            ~
+  data_split_column (  -d)              
+  data_split_threshold (  -T)           50
+input
+  infile (  -i)                         corpora/train.conll.data
+  reader ( -ir)                         tab
+  iterations ( -it)                     1
+  charset ( -ic)                        UTF-8
+  reader_options (-iro)                 
+  format ( -if)                         /appdata/dataformat/conllx.xml
+lib
+  save_instance_files ( -li)            false
+  external ( -lx)                       
+  verbosity ( -lv)                      silent
+  options ( -lo)                        -s_4_-c_0.1
+multiplanar
+  planar_root_handling (-prh)           normal
+nivre
+  allow_root ( -nr)                     true
+  enforce_tree ( -nt)                   false
+  allow_reduce ( -ne)                   false
+output
+  charset ( -oc)                        UTF-8
+  writer_options (-owo)                 
+  format ( -of)                         
+  writer ( -ow)                         tab
+  outfile (  -o)                        
+planar
+  no_covered_roots (-pcov)               false
+  connectedness (-pcon)                  none
+  acyclicity (-pacy)                     true
+pproj
+  covered_root (-pcr)                   none
+  marking_strategy ( -pp)               none
+  lifting_order (-plo)                  shortest
+singlemalt
+  parsing_algorithm (  -a)              covnonproj
+  null_value ( -nv)                     one
+  guide_model ( -gm)                    single
+  propagation ( -fp)                    
+  diagnostics ( -di)                    false
+  use_partial_tree ( -up)               false
+  diafile (-dif)                        stdout
+  mode ( -sm)                           parse
+
+DEPENDENCIES
+--guide-features (  -F)                 malt-features.xml
+
+FEATURE MODEL
+MAIN
+InputColumn(FORM,Left[0])
+InputColumn(FORM,Right[0])
+InputColumn(FORM,Right[1])
+InputColumn(FORM,head(Left[0]))
+InputColumn(LEMMA,Left[0])
+InputColumn(LEMMA,Left[1])
+InputColumn(LEMMA,Left[2])
+InputColumn(LEMMA,Right[0])
+InputColumn(LEMMA,Right[1])
+InputColumn(LEMMA,Right[2])
+InputColumn(POSTAG,LeftContext[0])
+InputColumn(POSTAG,Left[0])
+InputColumn(POSTAG,Left[1])
+InputColumn(POSTAG,RightContext[0])
+InputColumn(POSTAG,Right[0])
+InputColumn(POSTAG,Right[1])
+InputColumn(POSTAG,Right[2])
+InputColumn(POSTAG,Right[3])
+Merge(InputColumn(POSTAG,Left[0]),InputColumn(FORM,Right[0]))
+Merge(InputColumn(POSTAG,Left[0]),InputColumn(POSTAG,Right[0]))
+Merge(InputColumn(POSTAG,Left[0]),OutputColumn(DEPREL,Left[0]))
+Merge(InputColumn(POSTAG,Right[0]),InputColumn(FORM,Right[0]))
+Merge(InputColumn(POSTAG,Right[0]),OutputColumn(DEPREL,Right[0]))
+Merge(InputColumn(POSTAG,Right[0]),OutputColumn(DEPREL,ldep(Right[0])))
+Merge3(InputColumn(POSTAG,Left[0]),InputColumn(POSTAG,Right[0]),InputColumn(POSTAG,Right[1]))
+Merge3(InputColumn(POSTAG,Left[0]),OutputColumn(DEPREL,ldep(Left[0])),OutputColumn(DEPREL,rdep(Left[0])))
+Merge3(InputColumn(POSTAG,Left[1]),InputColumn(POSTAG,Left[0]),InputColumn(POSTAG,Right[0]))
+Merge3(InputColumn(POSTAG,Right[0]),InputColumn(POSTAG,Right[1]),InputColumn(POSTAG,Right[2]))
+Merge3(InputColumn(POSTAG,Right[1]),InputColumn(POSTAG,Right[2]),InputColumn(POSTAG,Right[3]))
+OutputColumn(DEPREL,Left[0])
+OutputColumn(DEPREL,Right[0])
+OutputColumn(DEPREL,ldep(Left[0]))
+OutputColumn(DEPREL,ldep(Right[0]))
+OutputColumn(DEPREL,rdep(Left[0]))
+
+liblinear INTERFACE
+-s_4_-c_0.1
