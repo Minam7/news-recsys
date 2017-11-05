@@ -20,7 +20,11 @@ def news_topic_creator():
     news_topic_file = file.read().split('\n')
     news_topic = dict()
     for i in range(len(news_topic_file)):
-        news_topic[i] = news_topic_file[i].split(' ')
+        num = news_topic_file[i].split(' ')
+
+        if len(num) != 0:
+            news_topic[i] = num
+        # list is string not float convert if needed
 
     return news_topic
 
@@ -40,4 +44,5 @@ if __name__ == '__main__':
     # TODO make file
     # user_news_matrix = user_news_creator()
     news_topic_matrix = news_topic_creator()
-    print(news_topic_matrix)
+    for item in news_topic_matrix:
+        print(item, ":", news_topic_matrix[item])

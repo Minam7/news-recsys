@@ -15,7 +15,9 @@ def news_topic_file_writer(start_index, end_index):
     for i in range(start_index + 1, end_index + 1):
         name = 'news' + str(i)
         news_topic = lda.news_topic_creator(name)
-        log += make_string(news_topic) + '\n'
+        log += make_string(news_topic)
+        if i < end_index:
+            log += '\n'
 
     file.write(log)
     file.close()
