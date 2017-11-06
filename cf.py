@@ -166,6 +166,8 @@ def user_recommendation(user_cookie):
             ss = similarities_sparse[user, i]
             simi_list.append(ss)
 
+    print(simi_list)
+
     u_f = False
     n_f = False
     while not u_f or not n_f:
@@ -187,10 +189,8 @@ def user_recommendation(user_cookie):
 def news_recommendation(news_id):
     print("For news with news id : {}".format(news_id))
     unt, n_count, u_count = user_news_topic_creator()
-    print(n_count, u_count)
     unt = sparse.csr_matrix(unt)
     similarities_sparse = cosine_similarity(unt, dense_output=False)
-    print(similarities_sparse)
     simi_list = list()
     for i in range(n_count + u_count):
         if i == news_id + u_count:
@@ -198,8 +198,6 @@ def news_recommendation(news_id):
         else:
             ss = similarities_sparse[news_id + u_count, i]
             simi_list.append(ss)
-
-    print(simi_list)
 
     u_f = False
     n_f = False
