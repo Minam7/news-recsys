@@ -166,8 +166,6 @@ def user_recommendation(user_cookie):
             ss = similarities_sparse[user, i]
             simi_list.append(ss)
 
-    print(simi_list)
-
     u_f = False
     n_f = False
     while not u_f or not n_f:
@@ -220,5 +218,5 @@ def news_recommendation(news_id):
 
 
 if __name__ == '__main__':
-    user_recommendation('95fba71f-54da-4dae-9125-44e4390b5480')
-    news_recommendation(0)
+    user_recommendation('1d1cf22b-4c6a-4e14-9c04-e45591e14549')
+    news_recommendation(17)

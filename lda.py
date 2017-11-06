@@ -13,7 +13,7 @@ def matrix_builder(doc_name):
     sentences = sent_tokenize(content)
 
     tagger = POSTagger(model='resources/postagger.model')
-    stop_words = open('stopwords-fa.txt', 'r', encoding='utf-8').read().split('\n')
+    stop_words = open('files/stopwords-fa.txt', 'r', encoding='utf-8').read().split('\n')
 
     words = []
     for s in sentences:

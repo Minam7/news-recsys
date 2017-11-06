@@ -26,4 +26,4 @@ def news_topic_file_writer(start_index, end_index):
 
 
 if __name__ == '__main__':
-    news_topic_file_writer(0, 5)
+    news_topic_file_writer(0, 21)

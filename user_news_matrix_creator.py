@@ -26,4 +26,4 @@ def user_news_maker(user, news):
 
 
 if __name__ == "__main__":
-    user_news_maker(5, 5)
+    user_news_maker(10, 21)
