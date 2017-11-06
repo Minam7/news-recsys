@@ -1,7 +1,7 @@
 import numpy
+
 import lda
 import mf
-import news_topic_file
 
 
 def user_news_creator():
@@ -44,8 +44,8 @@ def news_topic_creator():
     for i in range(len(news_topic_file)):
         num = news_topic_file[i].split(' ')
         if len(num) != 0:
-            for i in range(len(num)):
-                num[i] = float(num[i])
+            for j in range(len(num)):
+                num[j] = float(num[j])
             news_topic.append(num)
 
     return news_topic
@@ -114,6 +114,8 @@ def matrix_mf_creator():
 
     return nR
 
+
 if __name__ == '__main__':
-    matrix_mf_creator()
-    print(user_topic_creator())
+    nR = matrix_mf_creator()
+    for item in nR:
+        print(item)
