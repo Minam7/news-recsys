@@ -3,8 +3,10 @@ import lda
 
 def make_string(listed):
     log = ''
-    for item in listed:
-        log += str(item) + ' '
+    for i in range(len(listed)):
+        log += str(listed[i])
+        if i < len(listed) - 1:
+            log += ' '
     return log
 
 

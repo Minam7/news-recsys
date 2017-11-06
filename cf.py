@@ -1,6 +1,7 @@
 import numpy
-import mf
+
 import lda
+import mf
 
 
 def user_news_creator():
