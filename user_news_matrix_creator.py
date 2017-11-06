@@ -1,6 +1,6 @@
 import random
 
-
+# TODO space and last enter
 def user_news_maker(user, news):
     file = open('user_news_matrix.txt', 'a+', encoding='utf-8')
     log = ''

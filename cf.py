@@ -1,5 +1,6 @@
-import lda
 import numpy
+
+import lda
 
 
 def user_news_creator():
@@ -11,8 +12,10 @@ def user_news_creator():
     user_id = dict()
     for i in range(1, len(user_news_file)):
         data = user_news_file[i].split(' ')
-        user_id[data[0]] = i
-        user_news.append(data[1:news])
+        for i in range(1, len(data)):
+            data[i] = float(data[i])
+        user_id[data[0]] = i - 1
+        user_news.append(data[1:news + 1])
 
     return user_news, user_id
 
@@ -24,8 +27,9 @@ def news_topic_creator():
     news_topic = list()
     for i in range(len(news_topic_file)):
         num = news_topic_file[i].split(' ')
-
         if len(num) != 0:
+            for i in range(len(num)):
+                num[i] = float(num[i])
             news_topic.append(num)
 
     # list is string not float convert if needed
@@ -61,11 +65,13 @@ def user_topic_reader():
 if __name__ == '__main__':
     # TODO make file
     user_news_matrix, user_id = user_news_creator()
-    user_news_matrix = numpy.array(user_news_matrix)
+    user_news_matrix = numpy.array(user_news_matrix, dtype=float)
+    # print("user news matrix", user_news_matrix)
+
     news_topic_matrix = news_topic_creator()
-    news_topic_matrix = numpy.array(news_topic_matrix)
 
-    user_topic_matrix = numpy.dot(user_news_matrix, news_topic_matrix.T)
+    news_topic_matrix = numpy.array(news_topic_matrix, dtype=float)
 
-    for item in user_news_matrix:
-        print(item, ":", user_news_matrix[item])
+    user_topic_matrix = numpy.dot(user_news_matrix, news_topic_matrix)
+
+    
