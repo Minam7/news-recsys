@@ -1,11 +1,10 @@
 import numpy
 import lda
 import mf
-import news_topic_file
 
 
 def user_news_creator():
-    file = open('user_news_matrix.txt', 'r')
+    file = open('files/user_news_matrix.txt', 'r')
     user_news_file = file.read().split('\n')
     news = int(user_news_file[0])
 
@@ -23,7 +22,7 @@ def user_news_creator():
 
 # read from written file
 def user_topic_creator():
-    file = open('user_topic_matrix.txt', 'r')
+    file = open('files/user_topic_matrix.txt', 'r')
     user_topic_file = file.read().split('\n')
     user_topic = list()
     for i in range(len(user_topic_file)):
@@ -38,7 +37,7 @@ def user_topic_creator():
 
 # read from written file
 def news_topic_creator():
-    file = open('news_topic_matrix.txt', 'r')
+    file = open('files/news_topic_matrix.txt', 'r')
     news_topic_file = file.read().split('\n')
     news_topic = list()
     for i in range(len(news_topic_file)):
@@ -53,7 +52,7 @@ def news_topic_creator():
 
 def add_new_doc_to_news_topic(doc_name):
     # update all news_topic
-    file = open('news_topic_matrix.txt', 'a+')
+    file = open('files/news_topic_matrix.txt', 'a+')
     news_topic = lda.news_topic_creator('news2')
     log = ''
     for item_x in news_topic:

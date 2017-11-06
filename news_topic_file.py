@@ -12,7 +12,7 @@ def make_string(listed):
 
 # write news_topic to news_topic_matrix
 def news_topic_file_writer(start_index, end_index):
-    file = open('news_topic_matrix.txt', 'w')
+    file = open('files/news_topic_matrix.txt', 'w')
     log = ''
     for i in range(start_index + 1, end_index + 1):
         name = 'news' + str(i)

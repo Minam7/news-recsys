@@ -4,7 +4,7 @@ import uuid
 
 # TODO space and last enter
 def user_news_maker(user, news):
-    file = open('user_news_matrix.txt', 'w', encoding='utf-8')
+    file = open('files/user_news_matrix.txt', 'w', encoding='utf-8')
     log = ''
     log += str(news) + '\n'
     for i in range(0, user):

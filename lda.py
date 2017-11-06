@@ -49,17 +49,17 @@ def lda_learner(doc_num):
         docs_words.append(matrix_builder('news' + str(i)))
 
     dictionary = gensim.corpora.Dictionary(docs_words)
-    dictionary.save('lda_dictionary.dict')
+    dictionary.save('files/lda_dictionary.dict')
 
     corpus = [dictionary.doc2bow(text) for text in docs_words]
 
     ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=100, id2word=dictionary, passes=50)
-    ldamodel.save('lda.model')
+    ldamodel.save('files/lda.model')
 
 
 def news_topic_creator(doc_name):
-    ldamodel = gensim.models.LdaModel.load('lda.model')
-    dictionary = gensim.corpora.Dictionary.load('lda_dictionary.dict')
+    ldamodel = gensim.models.LdaModel.load('files/lda.model')
+    dictionary = gensim.corpora.Dictionary.load('files/lda_dictionary.dict')
     corpus = dictionary.doc2bow(matrix_builder(doc_name))
 
     topics = [0 for x in range(100)]
