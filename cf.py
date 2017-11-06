@@ -29,8 +29,8 @@ def user_topic_creator():
     for i in range(len(user_topic_file)):
         num = user_topic_file[i].split(' ')
         if len(num) != 0:
-            for i in range(len(num)):
-                num[i] = float(num[i])
+            for j in range(len(num)):
+                num[j] = float(num[j])
             user_topic.append(num)
 
     return user_topic
