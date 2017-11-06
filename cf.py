@@ -99,7 +99,7 @@ def matrix_mf_creator():
 
     nR = numpy.dot(nP, nQ.T)
 
-    file = open('user_topic_matrix.txt', 'w')
+    file = open('files/user_topic_matrix.txt', 'w')
     log = ''
     for j in range(len(nR)):
         item = nR[j]
