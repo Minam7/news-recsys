@@ -1,5 +1,5 @@
 import numpy
-
+import mf
 import lda
 
 
@@ -74,4 +74,16 @@ if __name__ == '__main__':
 
     user_topic_matrix = numpy.dot(user_news_matrix, news_topic_matrix)
 
-    
+    N = len(user_topic_matrix)
+    M = len(user_topic_matrix[0])
+    K = 2  # hyper parameter
+
+    P = numpy.random.rand(N, K)
+    Q = numpy.random.rand(M, K)
+
+    nP, nQ = mf.matrix_factorization(user_topic_matrix, P, Q, K)
+
+    nR = numpy.dot(nP, nQ.T)
+
+    for item in nR:
+        print(item)
