@@ -12,8 +12,8 @@ def user_news_creator():
     user_id = dict()
     for i in range(1, len(user_news_file)):
         data = user_news_file[i].split(' ')
-        for i in range(1, len(data)):
-            data[i] = float(data[i])
+        for j in range(1, len(data)):
+            data[j] = float(data[j])
         user_id[data[0]] = i - 1
         user_news.append(data[1:news + 1])
 
@@ -115,7 +115,7 @@ def user_topic_matrix():
 
 
 def user_recommendation(user_id):
-
+    pass
 
 if __name__ == '__main__':
     nR = user_topic_matrix()
