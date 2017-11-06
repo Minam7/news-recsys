@@ -9,10 +9,10 @@ def user_news_maker(user, news):
     log += str(news) + '\n'
     for i in range(0, user):
         news_rank = [0] * news
-        count = random.randint(0, news)
+        count = random.randint(1, news)
         for j in range(0, count):
             news_index = random.randint(0, news - 1)
-            news_rank[news_index] = round(random.uniform(0, 100), 2)
+            news_rank[news_index] = round(random.randint(0, 100)/100.0, 8)
 
         log += str(uuid.uuid4()) + ' '
         for k in range(len(news_rank)):
