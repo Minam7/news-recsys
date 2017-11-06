@@ -1,5 +1,4 @@
 import numpy
-
 import lda
 import mf
 
@@ -64,7 +63,7 @@ def add_new_doc_to_news_topic(doc_name):
 
 '''
 def user_topic_reader():
-    file = open('user_topic_matrix.txt', 'r')
+    file = open('files/user_topic_matrix.txt', 'r')
     user_topic_file = file.read().split('\n')
     news = int(user_topic_file[0])
     # TODO map id to cookie
@@ -77,7 +76,7 @@ def user_topic_reader():
 '''
 
 
-def matrix_mf_creator():
+def user_topic_matrix():
     user_news_matrix, user_id = user_news_creator()
     user_news_matrix = numpy.array(user_news_matrix, dtype=float)
     # print("user news matrix", user_news_matrix)
@@ -115,7 +114,10 @@ def matrix_mf_creator():
     return nR
 
 
+def user_recommendation(user_id):
+
+
 if __name__ == '__main__':
-    nR = matrix_mf_creator()
+    nR = user_topic_matrix()
     for item in nR:
         print(item)
