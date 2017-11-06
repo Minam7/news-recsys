@@ -45,7 +45,7 @@ def matrix_builder(doc_name):
 def lda_learner(doc_num):
     docs_words = []
 
-    for i in range(1, doc_num + 1):
+    for i in range(1, doc_num):
         docs_words.append(matrix_builder('news' + str(i)))
 
     dictionary = gensim.corpora.Dictionary(docs_words)
@@ -71,4 +71,4 @@ def news_topic_creator(doc_name):
 
 
 if __name__ == '__main__':
-    lda_learner(5)
+    lda_learner(21)
