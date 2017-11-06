@@ -1,7 +1,7 @@
 import numpy
-
 import lda
 import mf
+import news_topic_file
 
 
 def user_news_creator():
@@ -22,6 +22,21 @@ def user_news_creator():
 
 
 # read from written file
+def user_topic_creator():
+    file = open('user_topic_matrix.txt', 'r')
+    user_topic_file = file.read().split('\n')
+    user_topic = list()
+    for i in range(len(user_topic_file)):
+        num = user_topic_file[i].split(' ')
+        if len(num) != 0:
+            for i in range(len(num)):
+                num[i] = float(num[i])
+            user_topic.append(num)
+
+    return user_topic
+
+
+# read from written file
 def news_topic_creator():
     file = open('news_topic_matrix.txt', 'r')
     news_topic_file = file.read().split('\n')
@@ -32,8 +47,6 @@ def news_topic_creator():
             for i in range(len(num)):
                 num[i] = float(num[i])
             news_topic.append(num)
-
-    # list is string not float convert if needed
 
     return news_topic
 
@@ -63,8 +76,8 @@ def user_topic_reader():
     return user_news
 '''
 
-if __name__ == '__main__':
-    # TODO make file
+
+def matrix_mf_creator():
     user_news_matrix, user_id = user_news_creator()
     user_news_matrix = numpy.array(user_news_matrix, dtype=float)
     # print("user news matrix", user_news_matrix)
@@ -86,5 +99,21 @@ if __name__ == '__main__':
 
     nR = numpy.dot(nP, nQ.T)
 
-    for item in nR:
-        print(item)
+    file = open('user_topic_matrix.txt', 'w')
+    log = ''
+    for j in range(len(nR)):
+        item = nR[j]
+        for i in range(len(item)):
+            log += str(item[i])
+            if i < len(item) - 1:
+                log += ' '
+        if j < len(nR) - 1:
+            log += '\n'
+    file.write(log)
+    file.close()
+
+    return nR
+
+if __name__ == '__main__':
+    matrix_mf_creator()
+    print(user_topic_creator())
